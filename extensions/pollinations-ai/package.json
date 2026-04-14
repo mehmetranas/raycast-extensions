@@ -1,0 +1,80 @@
+{
+  "$schema": "https://www.raycast.com/schemas/extension.json",
+  "name": "pollinations-ai",
+  "title": "Pollinations AI",
+  "description": "Chat with AI models powered by Pollinations.ai — free tier available, connect with GitHub for more models",
+  "icon": "icon.png",
+  "author": "mhmtranas",
+  "categories": [
+    "Productivity",
+    "Developer Tools"
+  ],
+  "license": "MIT",
+  "platforms": [
+    "macOS"
+  ],
+  "keywords": [
+    "ai",
+    "chat",
+    "llm",
+    "pollinations",
+    "gpt",
+    "grammar",
+    "translate",
+    "free"
+  ],
+  "commands": [
+    {
+      "name": "chat",
+      "title": "Chat with AI",
+      "description": "Start a conversation with Pollinations AI",
+      "mode": "view"
+    },
+    {
+      "name": "quick-ask",
+      "title": "Quick Ask",
+      "description": "Ask a one-shot question and get an instant answer",
+      "mode": "view"
+    },
+    {
+      "name": "fix-grammar",
+      "title": "Fix Grammar",
+      "description": "Correct grammar and spelling in any language without changing the meaning",
+      "mode": "view"
+    },
+    {
+      "name": "translate",
+      "title": "Translate",
+      "description": "Translate text into any language using AI",
+      "mode": "view"
+    },
+    {
+      "name": "connect",
+      "title": "Connect to Pollinations",
+      "description": "Sign in with GitHub to get your free pollen balance",
+      "mode": "view"
+    }
+  ],
+  "preferences": [],
+  "dependencies": {
+    "@raycast/api": "^1.93.2",
+    "@raycast/utils": "^1.19.1"
+  },
+  "devDependencies": {
+    "@raycast/eslint-config": "^2.0.4",
+    "@types/node": "22.13.10",
+    "@types/react": "^18.3.28",
+    "@types/react-dom": "^18.3.7",
+    "eslint": "^9.22.0",
+    "prettier": "^3.5.3",
+    "typescript": "^5.8.2"
+  },
+  "scripts": {
+    "build": "ray build",
+    "dev": "ray develop",
+    "fix-lint": "ray lint --fix",
+    "lint": "ray lint",
+    "prepublishOnly": "echo 'npm run build' && npm run build",
+    "publish": "npx @raycast/api@latest publish"
+  }
+}
