@@ -64,16 +64,18 @@ function buildMarkdown(
 function ModelPicker({
   models,
   currentModel,
+  hasKey,
   onSelect,
 }: {
   models: PollinationsModel[];
   currentModel: string;
+  hasKey: boolean;
   onSelect: (model: string) => void;
 }) {
   const { pop } = useNavigation();
 
   const free = models.filter((m) => !m.isPaid);
-  const paid = tier.hasKey ? models.filter((m) => m.isPaid) : [];
+  const paid = hasKey ? models.filter((m) => m.isPaid) : [];
   const grouped = [
     { label: "", items: free },
     { label: "Paid", items: paid },
@@ -206,6 +208,7 @@ export default function ChatCommand() {
       <ModelPicker
         models={models}
         currentModel={selectedModel}
+        hasKey={tier.hasKey}
         onSelect={selectModel}
       />,
     );
