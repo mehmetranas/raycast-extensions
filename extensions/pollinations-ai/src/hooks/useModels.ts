@@ -88,11 +88,16 @@ export function useModels(hasKey?: boolean) {
   // forceUpdate triggers re-render; selectedModel is always read from _modelCache
   const [, forceUpdate] = useReducer((x: number) => x + 1, 0);
   const [models, setModels] = useState<PollinationsModel[]>([]);
-  const [isLoadingModels, setIsLoadingModels] = useState(true);
+  const [isFetchingModels, setIsFetchingModels] = useState(true);
+  const [isModelRestored, setIsModelRestored] = useState(false);
+
+  // isLoadingModels is true until BOTH localStorage read AND model list fetch complete
+  const isLoadingModels = isFetchingModels || !isModelRestored;
 
   // On first mount: load from LocalStorage (handles app restart)
   useEffect(() => {
     getStoredModel().then((stored) => {
+      setIsModelRestored(true);
       if (stored !== _modelCache) {
         notifyModelChange(stored);
       } else {
@@ -122,7 +127,7 @@ export function useModels(hasKey?: boolean) {
       } catch {
         // fall through — no models list, UI shows model name only
       } finally {
-        setIsLoadingModels(false);
+        setIsFetchingModels(false);
       }
     }
     fetchModels();

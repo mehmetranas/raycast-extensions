@@ -77,10 +77,11 @@ export default function TranslateCommand() {
   );
 
   // useLocalStorage from @raycast/utils — persists across sessions automatically
-  const { value: targetLang, setValue: setTargetLang } = useLocalStorage(
-    TARGET_LANG_KEY,
-    DEFAULT_LANG,
-  );
+  const {
+    value: targetLang,
+    setValue: setTargetLang,
+    isLoading: isLoadingLang,
+  } = useLocalStorage(TARGET_LANG_KEY, DEFAULT_LANG);
 
   const [input, setInput] = useState("");
   const [result, setResult] = useState<string | null>(null);
@@ -205,7 +206,7 @@ export default function TranslateCommand() {
 
   return (
     <Form
-      isLoading={isLoading || isLoadingModels}
+      isLoading={isLoading || isLoadingModels || isLoadingLang}
       actions={
         <ActionPanel>
           <Action.SubmitForm
